@@ -1,6 +1,8 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Assertions; use Ada.Assertions;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Command_Line; use Ada.Command_Line;
 with Incremental_Encoding; use Incremental_Encoding;
 
 procedure Tests is
@@ -22,9 +24,9 @@ procedure Tests is
       Passed_Tests := Passed_Tests + 1;
    exception
       when E : Assertion_Error =>
-         Put_Line("      FAIL (Assertion): " & Ada.Exceptions.Exception_Message(E));
+         Put_Line("      FAIL (Assertion): " & Exception_Message(E));
       when E : others =>
-         Put_Line("      FAIL (Exception): " & Ada.Exceptions.Exception_Name(E));
+         Put_Line("      FAIL (Exception): " & Exception_Name(E));
    end Run_Test;
 
    ---------------------------------------------------------
